@@ -1,0 +1,17 @@
+#home
+cd /work/users/jwang
+
+#tools
+cd /work/tools
+
+#env
+cd /work/tools/env/dev
+
+#riscv
+cd /work/users/jwang/riscv
+
+#riscv-main
+cd /work/projects/riscv
+
+#orv
+proj_switch pygmy-es1x/orv

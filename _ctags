@@ -1,0 +1,4 @@
+--exclude=.SOS
+--exclude=.git
+--exclude=nobackup
+--exclude=nobkp

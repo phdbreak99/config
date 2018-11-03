@@ -1,0 +1,3 @@
+#riscv
+export RISCV=/work/users/jwang/riscv/toolchain
+efxport ROCKETCHIP=/work/users/jwang/riscv/rocket-chip

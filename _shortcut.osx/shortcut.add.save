@@ -1,0 +1,9 @@
+#x
+export LC_ALL=C
+export DISPLAY=localhost:0
+
+#riscv
+export RISCV=/Users/jwang/proj/riscv/toolchain
+export PATH=/usr/local/Cellar/gcc/7.2.0/bin:$PATH
+export CC=gcc-7
+export CXX=g++-7

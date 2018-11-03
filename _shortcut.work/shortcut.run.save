@@ -1,0 +1,20 @@
+#cfg_sc
+vim ~/.shortcut/shortcut.*.save
+
+#vncserver
+vncserver -geometry 1920x1080 -depth 8
+
+#lic
+export LM_LICENSE_FILE=5280@ours-nfs:5280@ours-cad1; /work/tools/flexlm/x64_lsb/lmutil lmstat -a
+
+#lic-vcs
+export LM_LICENSE_FILE=5280@ours-nfs:5280@ours-cad1; /work/tools/flexlm/x64_lsb/lmutil lmstat -f VCSRuntime_Net
+
+#vd
+set_display; tool add verdi=latest; verdi -f flat.f -ssf waves.fsdb -sv &
+
+#dve
+set_display; dve -full64 -vpd vcdplus.vpd &
+
+#smoke
+regress -tag orv_smoke; regress -tag pygmy_smoke
