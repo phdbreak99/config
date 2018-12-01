@@ -236,7 +236,7 @@ set_title() {
 function move_to_trash() {
     # Move files or folders to Trash instead of deleting them
     echo "Moving the deleted files/folders to Trash..."
-    dir_tmp=$TRASH/`date +%Y.%m.%d`
+    dir_tmp=$TRASH_DIR/`date +%Y.%m.%d`
     subdir_tmp=$dir_tmp/`date +%H.%M.%S`
     if [ ! -d $dir_tmp ]; then
         mkdir $dir_tmp
@@ -250,9 +250,8 @@ function move_to_trash() {
 
 function trash_cleanup() {
 # cleanup the Trash: delete all files/folders older than 30 days
-    find $TRASH/ -mtime +30 | xargs \rm -rf
+    find $TRASH_DIR/ -mtime +30 | xargs \rm -rf
 }
-alias trashcleanup='trash_cleanup'
 
 # alias cd=cd_func
 alias ..='cd ..'
@@ -300,6 +299,7 @@ case `uname` in
         alias cd=cd_func_linux
         alias pwd=pwd_func
         alias rm='move_to_trash'
+        export TRASH_DIR=$HOME/.trash
         alias vi='vim -X'
         alias vdiff='vimdiff --noplugin'
 
