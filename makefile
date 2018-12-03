@@ -17,5 +17,6 @@ $(ls_cfg):
 	$(ln) $(pwd)/$@ ~/$(subst _,.,$@)
 	$(ln) $(pwd) ~/config
 	$(ln) ~/config/script ~/script
+	$(ln) ~/config/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
 
 .PHONY: default all $(ls_cfg) init

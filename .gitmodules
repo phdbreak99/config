@@ -4,3 +4,12 @@
 [submodule "_vim/bundle/Vundle.vim"]
 	path = _vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "_vim/bundle/dracula-theme"]
+	path = _vim/bundle/dracula-theme
+	url = git@github.com:dracula/vim.git
+[submodule "dracula-zsh"]
+	path = dracula-zsh
+	url = https://github.com/dracula/zsh.git
+[submodule "dracula-mintty"]
+	path = dracula-mintty
+	url = https://github.com/dracula/mintty.git
