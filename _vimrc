@@ -98,10 +98,10 @@ set softtabstop=4
 set expandtab
 set smarttab
 autocmd FileType make setlocal noexpandtab
-autocmd Filetype verilog_systemverilog setlocal shiftwidth=2 softtabstop=2 expandtab smarttab
-autocmd Filetype c setlocal shiftwidth=2 softtabstop=2 expandtab smarttab
-autocmd Filetype cpp setlocal shiftwidth=2 softtabstop=2 expandtab smarttab
-autocmd Filetype javascript setlocal shiftwidth=2 softtabstop=2 expandtab smarttab
+autocmd Filetype verilog_systemverilog setlocal shiftwidth=4 softtabstop=4 expandtab smarttab
+autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 expandtab smarttab
+autocmd Filetype cpp setlocal shiftwidth=4 softtabstop=4 expandtab smarttab
+autocmd Filetype javascript setlocal shiftwidth=4 softtabstop=4 expandtab smarttab
 
 set textwidth=0
 set wrapmargin=0
@@ -116,7 +116,7 @@ set printfont=YaHei_Consolas_Hybrid:h8
 set printheader=%<File:\ %t%=Page:\ %N
 
 " color scheme
-color dracula
+" color dracula " has comment out if zsh already use dracula
 
 if (has("gui_running"))
     "" GVim
