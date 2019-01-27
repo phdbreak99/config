@@ -124,7 +124,7 @@ pwd_func() {
     case `uname` in
         Darwin)
             # commands for OS X go here
-            echo ${cur_dpath} | sed 's/\n//g' | pbcopy
+            echo ${cur_dpath} | pbcopy
             pbpaste
         ;;
         Linux)
