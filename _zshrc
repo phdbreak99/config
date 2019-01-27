@@ -280,7 +280,7 @@ alias gm-master='gm origin/master'
 alias gm-top='gm origin/top'
 alias gm-orv='gm origin/orv'
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}
 unset zle_bracketed_paste
 case `uname` in
     Darwin)
@@ -298,8 +298,6 @@ case `uname` in
         echo "export DISPLAY=$DISPLAY" > ~/.display
         export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH}
 
-        export LS_COLORS='ow=01;36;40'; # change WSL windows folder color
-
         alias cd=cd_func_linux
         alias pwd=pwd_func
         alias rm='move_to_trash'
@@ -309,5 +307,8 @@ case `uname` in
 
         alias rgrep='grep -R'
         alias igrep='grep -i'
+
+        export LS_COLORS='ow=01;36;40'; # change WSL windows folder color
+        export SYSTEMC_HOME=/opt/systemc-2.3.3
     ;;
 esac

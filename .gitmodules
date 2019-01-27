@@ -13,3 +13,6 @@
 [submodule "dracula-mintty"]
 	path = dracula-mintty
 	url = https://github.com/dracula/mintty.git
+[submodule "script/shortcut"]
+	path = script/shortcut
+	url = git@github.com:phdbreak99/shortcut.git
