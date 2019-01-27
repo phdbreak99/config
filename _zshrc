@@ -108,7 +108,7 @@ mkcd_func () {
 
 shortcut () {
     local cmd
-    cmd=$(~/script/shortcut.py $@)
+    cmd=$(python3 ~/script/shortcut.py $@)
     eval ${cmd}
 }
 
@@ -164,16 +164,18 @@ clipboard_to_file () {
 #move files/folders to Trash, instead of rm
 move_to_trash() {
     echo "Moving the deleted files/folders to trash @ $TRASH_DPATH"
-    dir_tmp=$TRASH_DPATH/`date +%Y.%m.%d`
-    subdir_tmp=$dir_tmp/`date +%H.%M.%S`
-    if [ ! -d $dir_tmp ]; then
+    dir_tmp=$TRASH_DPATH/`date +%Y-%m-%d`
+    subdir_tmp=$dir_tmp/`date +%H:%M:%S`
+    if [[ ! -d $dir_tmp ]]; then
         mkdir $dir_tmp
     fi
-    if [ ! -d $subdir_tmp ]; then
+    if [[ ! -d $subdir_tmp ]]; then
         mkdir $subdir_tmp
     fi
     for target in $@; do
-        mv -v $subdir_tmp $target
+        if [[ $target != -* ]]; then
+            mv -v $target $subdir_tmp
+        fi
     done
 }
 
@@ -181,6 +183,24 @@ trash_cleanup() {
     echo "Cleanup the trash: delete all files/folders older than 30 days"
     find $TRASH_DPATH/ -mtime +30 | xargs \rm -rf
 }
+
+# PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}
+
+case $SHELL_TYPE in
+    OSX_HOME)
+        # commands for OS X go here
+        export MANPATH=/opt/local/share/man:$MANPATH
+    ;;
+    LINUX_WORK)
+        # commands for Linux go here
+        export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH}
+    ;;
+esac
+
+#===========================================================
+# alias
+#===========================================================
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -208,17 +228,3 @@ alias add='shortcut add'
 # grep
 alias rgrep='grep -R'
 alias igrep='grep -i'
-
-# PATH
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}
-
-case $SHELL_TYPE in
-    OSX_HOME)
-        # commands for OS X go here
-        export MANPATH=/opt/local/share/man:$MANPATH
-    ;;
-    LINUX_WORK)
-        # commands for Linux go here
-        export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH}
-    ;;
-esac

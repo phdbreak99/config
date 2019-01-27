@@ -3,20 +3,19 @@ SHELL=/bin/bash
 ln=/bin/ln -sf
 
 pwd=$(shell pwd)
-ls_cfg=$(wildcard _*) script
 
 default:
-	@echo $(ls_cfg)
+	@echo "use \"make init\" to init submodule"
+	@echo "use \"make all\" to link all the config files/directories"
+	make all --dry-run
 
 init:
 	git submodule update --init
 
-all: $(ls_cfg)
-
-$(ls_cfg):
-	$(ln) $(pwd)/$@ ~/$(subst _,.,$@)
-	$(ln) $(pwd) ~/config
+all:
 	$(ln) ~/config/script ~/script
-	$(ln) ~/config/dracula-zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
+	$(foreach cfg,$(wildcard _*),$(ln) ~/config/$(cfg) ~/$(subst _,.,$(cfg));)
+	test -d ~/config/${SHELL_TYPE}
+	$(foreach cfg,$(wildcard ${SHELL_TYPE}/_*),$(ln) ~/config/$(cfg) ~/$(subst _,.,$(notdir $(cfg))))
 
-.PHONY: default all $(ls_cfg) init
+.PHONY: default all init
