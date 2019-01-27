@@ -96,75 +96,12 @@ zle_highlight=(default:fg=green) # change input text color
 
 setopt nosharehistory
 
-# # function cd_func
-# # This function defines a 'cd' replacement function capable of keeping, 
-# # displaying and accessing history of visited directories, up to 10 entries.
-# # To use it, uncomment it, source this file and try 'cd --'.
-# # acd_func 1.0.5, 10-nov-2004
-# # Petar Marinov, http:/geocities.com/h2428, this is public domain
-# cd_func_linux () {
-#   local x2 the_new_dir adir index
-#   local -i cnt
-# 
-#   if [[ $1 ==  "--" ]]; then
-#     dirs -v
-#     return 0
-#   fi
-# 
-#   the_new_dir=$1
-#   [[ -z $1 ]] && the_new_dir=$HOME
-# 
-#   if [[ ${the_new_dir:0:1} == '-' ]]; then
-#     #
-#     # Extract dir N from dirs
-#     index=${the_new_dir:1}
-#     [[ -z $index ]] && index=1
-#     adir=$(dirs +$index)
-#     [[ -z $adir ]] && return 1
-#     the_new_dir=$adir
-#   fi
-# 
-#   #
-#   # '~' has to be substituted by ${HOME}
-#   [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
-# 
-#   #
-#   # Now change to the new dir and add to the top of the stack
-#   pushd "${the_new_dir}" > /dev/null
-#   [[ $? -ne 0 ]] && return 1
-#   the_new_dir=$(pwd)
-#   ls -hF --color=tty
-# 
-#   #
-#   # Trim down everything beyond 11th entry
-#   popd -n +11 2>/dev/null 1>/dev/null
-# 
-#   #
-#   # Remove any other occurence of this dir, skipping the top of the stack
-#   for ((cnt=1; cnt <= 10; cnt++)); do
-#     x2=$(dirs +${cnt} 2>/dev/null)
-#     [[ $? -ne 0 ]] && return 0
-#     [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
-#     if [[ "${x2}" == "${the_new_dir}" ]]; then
-#       popd -n +$cnt 2>/dev/null 1>/dev/null
-#       cnt=cnt-1
-#     fi
-#   done
-# 
-#   return 0
-# }
-
-cd_func_linux () {
+cd_func () {
     cd $1
     ls
 }
 
-cd_func_osx () {
-    cd $1
-    ls
-}
-
-mkcd () {
+mkcd_func () {
     mkdir $1
     cd $1
 }
@@ -224,21 +161,10 @@ clipboard_to_file () {
     esac
 }
 
-set_display () {
-    cat ~/.display
-    source ~/.display
-}
-
-set_title() {
-    printf "\033k$1\033\\"
-}
-
 #move files/folders to Trash, instead of rm
-
-function move_to_trash() {
-    # Move files or folders to Trash instead of deleting them
-    echo "Moving the deleted files/folders to Trash..."
-    dir_tmp=$TRASH_DIR/`date +%Y.%m.%d`
+move_to_trash() {
+    echo "Moving the deleted files/folders to trash @ $TRASH_DPATH"
+    dir_tmp=$TRASH_DPATH/`date +%Y.%m.%d`
     subdir_tmp=$dir_tmp/`date +%H.%M.%S`
     if [ ! -d $dir_tmp ]; then
         mkdir $dir_tmp
@@ -246,69 +172,53 @@ function move_to_trash() {
     if [ ! -d $subdir_tmp ]; then
         mkdir $subdir_tmp
     fi
-    mv -t $subdir_tmp --backup=t --verbose $@
-    echo -e "The directory $subdir_tmp will be deleted after 30 days!"
+    for target in $@; do
+        mv -v $subdir_tmp $target
+    done
 }
 
-function trash_cleanup() {
-# cleanup the Trash: delete all files/folders older than 30 days
-    find $TRASH_DIR/ -mtime +30 | xargs \rm -rf
+trash_cleanup() {
+    echo "Cleanup the trash: delete all files/folders older than 30 days"
+    find $TRASH_DPATH/ -mtime +30 | xargs \rm -rf
 }
 
-# alias cd=cd_func
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias cd=cd_func
+alias pwd=pwd_func
+alias vi='vim'
+alias vdiff='vimdiff --noplugin'
+
+# rm to trash
+export TRASH_DPATH=$HOME/.trash
+alias rm='move_to_trash'
 
 alias ln='ln -s'
-alias mkcdir='mkcd'
+alias mkcd='mkcd'
 alias du='du -m -d 1'
-alias tmux='tmux -2'
 
+# shortcut
 alias go='shortcut go'
 alias run='shortcut run'
 alias add='shortcut add'
-alias xclip='\xclip -selection clipbard'
 
-alias ga='git add'
-alias gs='git status -uno'
-alias gf='git fetch'
-alias gp='git push'
-alias gc='git commit'
-alias gm='git merge'
-alias gm-master='gm origin/master'
-alias gm-top='gm origin/top'
-alias gm-orv='gm origin/orv'
+# grep
+alias rgrep='grep -R'
+alias igrep='grep -i'
 
+# PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}
-unset zle_bracketed_paste
-case `uname` in
-    Darwin)
+
+case $SHELL_TYPE in
+    OSX_HOME)
         # commands for OS X go here
-        export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/Cellar/vim/8.0.0844/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-        export PATH=/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:${PATH}
         export MANPATH=/opt/local/share/man:$MANPATH
-        alias cd=cd_func_osx
-        alias pwd=pwd_func
-        alias vdiff='vimdiff --noplugin'
-        alias vi='vim'
     ;;
-    Linux)
+    LINUX_WORK)
         # commands for Linux go here
-        echo "export DISPLAY=$DISPLAY" > ~/.display
         export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH}
-
-        alias cd=cd_func_linux
-        alias pwd=pwd_func
-        alias rm='move_to_trash'
-        export TRASH_DIR=$HOME/.trash
-        alias vi='vim -X'
-        alias vdiff='vimdiff --noplugin'
-
-        alias rgrep='grep -R'
-        alias igrep='grep -i'
-
-        export LS_COLORS='ow=01;36;40'; # change WSL windows folder color
-        export SYSTEMC_HOME=/opt/systemc-2.3.3
     ;;
 esac
