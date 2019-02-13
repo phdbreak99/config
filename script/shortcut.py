@@ -113,5 +113,5 @@ def cmd_line(argv, is_debug=False, is_detail=True):
     return
 
 if __name__ == '__main__':
-    cmd_line(sys.argv[1:], is_debug=True, is_detail=True)
-    # cmd_line(sys.argv[1:], is_debug=False, is_detail=True)
+    # cmd_line(sys.argv[1:], is_debug=True, is_detail=True)
+    cmd_line(sys.argv[1:], is_debug=False, is_detail=True)
