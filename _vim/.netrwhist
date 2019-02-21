@@ -1,10 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/jw'
-let g:netrw_dirhist_2='/mnt/d/OneDrive/data/github/phdbreak99.github.io/.git'
-let g:netrw_dirhist_3='/mnt/d/OneDrive/data/github/phdbreak99.github.io/life'
-let g:netrw_dirhist_4='/mnt/d/OneDrive/data/doc'
-let g:netrw_dirhist_5='/mnt/d/OneDrive/data/tmp/test-default/content'
-let g:netrw_dirhist_6='/mnt/d/OneDrive/data/tmp/test-default'
-let g:netrw_dirhist_7='/mnt/d/OneDrive/data/tmp/test-default/content'
-let g:netrw_dirhist_8='/mnt/d/OneDrive/data/tmp/test-default/content/test'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/jw/OneDrive/data/side/proj/jsim/.git'
+let g:netrw_dirhist_2='/Users/jw/OneDrive/data/side/proj/jsim/test'
+let g:netrw_dirhist_3='/Users/jw/OneDrive/data/side/proj/jsim'
+let g:netrw_dirhist_4='/Users/jw/OneDrive/data/side/proj/jsim/src'
+let g:netrw_dirhist_5='/Users/jw/OneDrive/data/side/proj/jsim/src/test'
+let g:netrw_dirhist_6='/Users/jw/OneDrive/data/side/proj/jsim/include'

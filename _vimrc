@@ -183,6 +183,7 @@ set foldmarker={{{,}}}
 " autocmd FileType python setlocal foldmethod=syntax
 " autocmd FileType markdown setlocal foldmethod=syntax
 autocmd FileType verilog_systemverilog setlocal foldmethod=marker
+autocmd FileType cpp setlocal commentstring=\ \/\/\ %s
 
 """ comment
 " NERDCommenter

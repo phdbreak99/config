@@ -191,7 +191,6 @@ case $SHELL_TYPE in
     OSX_HOME)
         # commands for OS X go here
         export MANPATH=/opt/local/share/man:$MANPATH
-        export SYSTEMC_HOME=/usr/local/Cellar/systemc/2.3.2
     ;;
     LINUX_WORK)
         # commands for Linux go here
