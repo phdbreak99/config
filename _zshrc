@@ -192,6 +192,10 @@ case $SHELL_TYPE in
         # commands for OS X go here
         export MANPATH=/opt/local/share/man:$MANPATH
     ;;
+    OSX_WORK)
+        # commands for OS X go here
+        export MANPATH=/opt/local/share/man:$MANPATH
+    ;;
     LINUX_WORK)
         # commands for Linux go here
         export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH}

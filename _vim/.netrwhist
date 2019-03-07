@@ -1,8 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/jw/OneDrive/data/side/proj/jsim/.git'
 let g:netrw_dirhist_2='/Users/jw/OneDrive/data/side/proj/jsim/test'
 let g:netrw_dirhist_3='/Users/jw/OneDrive/data/side/proj/jsim'
 let g:netrw_dirhist_4='/Users/jw/OneDrive/data/side/proj/jsim/src'
 let g:netrw_dirhist_5='/Users/jw/OneDrive/data/side/proj/jsim/src/test'
 let g:netrw_dirhist_6='/Users/jw/OneDrive/data/side/proj/jsim/include'
+let g:netrw_dirhist_7='/Users/jimw/config/.git'
+let g:netrw_dirhist_8='/Users/jimw/config/.git/objects'
+let g:netrw_dirhist_9='/Users/jimw/config/.git'
