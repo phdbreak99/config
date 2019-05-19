@@ -17,5 +17,6 @@ all:
 	$(foreach cfg,$(wildcard _*),$(ln) ~/config/$(cfg) ~/$(subst _,.,$(cfg));)
 	test -d ~/config/${SHELL_TYPE}
 	$(foreach cfg,$(wildcard ${SHELL_TYPE}/_*),$(ln) ~/config/$(cfg) ~/$(subst _,.,$(notdir $(cfg))))
+	cd ~/.oh-my-zsh/themes; ln -sf ~/config/dracula/zsh/dracula.zsh-theme
 
 .PHONY: default all init
