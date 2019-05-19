@@ -12,32 +12,32 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'git@github.com:VundleVim/Vundle.vim'
 
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'ervandew/supertab'
-Plugin 'kien/ctrlp.vim'
-Plugin 'luochen1990/rainbow' "Rainbow Parentheses Improved
-Plugin 'Yggdroot/indentLine'
-"Plugin 'godlygeek/tabular'
-Plugin 'junegunn/vim-easy-align'
-"Plugin 'vhda/verilog_systemverilog.vim'
-Plugin 'cazador481/vim-systemverilog'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'dracula/vim'
+"Plugin 'git@github.com:Valloric/YouCompleteMe'
+"Plugin 'git@github.com:ervandew/supertab'
+Plugin 'git@github.com:kien/ctrlp.vim'
+Plugin 'git@github.com:luochen1990/rainbow' "Rainbow Parentheses Improved
+Plugin 'git@github.com:Yggdroot/indentLine'
+"Plugin 'git@github.com:godlygeek/tabular'
+Plugin 'git@github.com:junegunn/vim-easy-align'
+"Plugin 'git@github.com:vhda/verilog_systemverilog.vim'
+Plugin 'git@github.com:cazador481/vim-systemverilog'
+Plugin 'git@github.com:scrooloose/nerdcommenter'
+Plugin 'git@github.com:dracula/vim'
 
-"Plugin 'majutsushi/tagbar'"
-Plugin 'vim-airline/vim-airline'
-" Plugin 'bling/vim-bufferline'
-Plugin 'mhinz/vim-startify'
+"Plugin 'git@github.com:majutsushi/tagbar'
+Plugin 'git@github.com:vim-airline/vim-airline'
+" Plugin 'git@github.com:bling/vim-bufferline'
+Plugin 'git@github.com:mhinz/vim-startify'
 
-" Plugin 'vim-scripts/increment.vim'
-Plugin 'triglav/vim-visual-increment'
+" Plugin 'git@github.com:vim-scripts/increment.vim'
+Plugin 'git@github.com:triglav/vim-visual-increment'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-scripts/GrepCommands'
+Plugin 'git@github.com:tpope/vim-fugitive'
+Plugin 'git@github.com:vim-scripts/GrepCommands'
 
-Plugin 'amoffat/snake'
+Plugin 'git@github.com:amoffat/snake'
 
 
 "" The following are examples of different formats supported."
@@ -72,6 +72,7 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+let g:vundle_default_git_proto = 'git'
 
 """""""""""""
 " vundle end
