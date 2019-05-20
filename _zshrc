@@ -215,11 +215,12 @@ case $SHELL_TYPE in
     OSX_HOME)
         # commands for OS X go here
         export MANPATH=/opt/local/share/man:$MANPATH
+        export PATH=/usr/local/opt/gnu-tar/libexec/gnubin:$PATH
     ;;
     OSX_WORK)
         # commands for OS X go here
         export MANPATH=/opt/local/share/man:$MANPATH
-
+        export PATH=/usr/local/opt/gnu-tar/libexec/gnubin:$PATH
     ;;
     LINUX_WORK)
         # commands for Linux go here
