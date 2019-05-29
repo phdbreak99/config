@@ -17,5 +17,8 @@ all:
 	$(foreach cfg,$(wildcard _*),$(ln) ~/config/$(cfg) ~/$(subst _,.,$(cfg));)
 	test -d ~/config/${SHELL_TYPE}
 	$(foreach cfg,$(wildcard ${SHELL_TYPE}/_*),$(ln) ~/config/$(cfg) ~/$(subst _,.,$(notdir $(cfg))))
+	cd ~/.oh-my-zsh/themes; ln -sf ~/config/dracula/zsh/dracula.zsh-theme
+	mkdir ~/.trash
+	cd ~/.vim/bundle; ln -sf ~/config/vim_snake.py
 
 .PHONY: default all init

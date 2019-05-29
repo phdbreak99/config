@@ -1,9 +1,12 @@
 [submodule "_oh-my-zsh"]
 	path = _oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
+	url = git@github.com:robbyrussell/oh-my-zsh.git
 [submodule "_vim/bundle/Vundle.vim"]
 	path = _vim/bundle/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim.git
+	url = git@github.com:VundleVim/Vundle.vim.git
 [submodule "dracula/zsh"]
 	path = dracula/zsh
-	url = https://github.com/dracula/zsh.git
+	url = git@github.com:dracula/zsh.git
+[submodule "dracula/iterm"]
+	path = dracula/iterm
+	url = git@github.com:dracula/iterm.git

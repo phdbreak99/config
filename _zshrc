@@ -81,7 +81,7 @@ PROMPT='
 %F{green}%n@%m: %F{blue}%/%f $(git_prompt_info)
 %F{green}➜  %f'
 
-RPROMPT='%t'
+# RPROMPT='%t'
 
 zle_highlight=(default:fg=green) # change input text color
 
@@ -184,6 +184,30 @@ trash_cleanup() {
     find $TRASH_DPATH/ -mtime +30 | xargs \rm -rf
 }
 
+fb_get_file() {
+    scp -oProxyJump=$USER@prn-edajump02 $USER@prn-frluserXX:/nfs/user/$USER/$1  .
+}
+
+fb_put_file() {
+    local_file_path=$1
+
+    if [[ ! -z $2 ]]; then
+        server_file_name=$2
+    else
+        server_file_name=`basename $1`
+    fi
+
+    server_file_path=/nfs/user/$USER/tmp/$server_file_name
+
+    echo "send file local=$local_file_path to server=$server_file_path"
+
+    if [[ ! -f $1 ]]; then
+        echo "Error: local file ($local_file_path) does NOT exist"
+    fi
+
+    scp -oProxyJump=$USER@prn-edajump02 $local_file_path $USER@prn-frluserXX:$server_file_path
+}
+
 # PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}
 
@@ -191,6 +215,12 @@ case $SHELL_TYPE in
     OSX_HOME)
         # commands for OS X go here
         export MANPATH=/opt/local/share/man:$MANPATH
+        export PATH=/usr/local/opt/gnu-tar/libexec/gnubin:$PATH
+    ;;
+    OSX_WORK)
+        # commands for OS X go here
+        export MANPATH=/opt/local/share/man:$MANPATH
+        export PATH=/usr/local/opt/gnu-tar/libexec/gnubin:$PATH
     ;;
     LINUX_WORK)
         # commands for Linux go here
@@ -228,3 +258,14 @@ alias add='shortcut add'
 # grep
 alias rgrep='grep -R'
 alias igrep='grep -i'
+
+# git
+alias up='git fetch; git rebase trunk; ab'
+function new { git checkout -b $1 trunk; up; }
+alias com='git commit -a'
+alias acom='git commit -a --amend'
+alias sw='git checkout'
+alias st='git status'
+alias br='git branch'
+alias cont='git rebase --continue'
+alias del='sw master; git branch -D'
