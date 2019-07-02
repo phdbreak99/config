@@ -145,6 +145,7 @@ au BufRead,BufNewFile *.bv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.gv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.vh set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.v set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.vin set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.spi set filetype=spice
 au BufRead,BufNewFile *.spm set filetype=spice
 au BufRead,BufNewFile *.spm028 set filetype=spice
@@ -242,19 +243,10 @@ vmap ,ga y:grep "<C-R>0" *.*<CR>
 vmap ,gt y:grep "<C-R>0" *.tcl<CR>
 vmap ,gv y:grep "<C-R>0" *.?v<CR>
 
-" https://stackoverflow.com/questions/44480829/how-to-copy-to-clipboard-in-vim-of-bash-on-windows
-func! GetSelectedText()
-    normal gv"xy
-    let result = getreg("x")
-    return result
-endfunc
-if !has("clipboard") && executable("clip.exe")
-    noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
-endif
-
 
 "" copy register
-autocmd FocusGained * let @z=@+
+" autocmd FocusGained * let @z=@+
+set clipboard=unnamedplus
 
 "" cancel highlight
 nmap ,h :nohl<CR>
