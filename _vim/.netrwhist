@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/nfs/proj/cv/user/haobow/work/freedom-e-sdk/scripts'
-let g:netrw_dirhist_2='/nfs/proj/cv/user/haobow/work/freedom-e-sdk'
-let g:netrw_dirhist_3='/nfs/proj/cv/user/haobow/work/freedom-e-sdk/bsp'
-let g:netrw_dirhist_4='/nfs/proj/cv/user/haobow/work/freedom-e-sdk/bsp/bronze-12-s51-cpu'

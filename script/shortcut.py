@@ -12,8 +12,9 @@ class Shortcut:
     :type save: Dict[str, str]
     :type cfg_fpath: pathlib.Path
     """
-    def __init__(self, mode: str, is_debug: bool = False, is_detail: bool = False):
+    def __init__(self, mode: str, ls_argv: List[str], is_debug: bool = False, is_detail: bool = False):
         self.mode = mode
+        self.ls_argv = ls_argv
         self.is_debug = is_debug
         self.is_detail = is_detail
 
@@ -65,8 +66,17 @@ class Shortcut:
                 abbr = ls_close_abbr[0]
         cmd = self.save[abbr]
         cmd = cmd.replace('\n', ';').replace(';;', ';')
+
+        # replace argv
+        if (cmd.find(r' $') != -1):
+            print('INFO: argument found in "%s"' % cmd, file=sys.stderr)
+            for (i, argv) in enumerate(self.ls_argv):
+                cmd = cmd.replace(' $%d' % (i+1), ' ' + argv)
+            cmd = cmd.replace(' $*', ' ' + ' '.join(self.ls_argv))
+
         print(cmd)
         print(cmd, file=sys.stderr)
+
 
     def search(self, pat):
         ls_matched_abbr = list()
@@ -96,13 +106,17 @@ def cmd_line(argv, is_debug=False, is_detail=True):
     assert len(argv) >= 2, 'input arguments = %s' % argv
     mode = argv[0]  # type: str
     abbr = argv[1]  # type: str
+    if (len(argv) > 2):
+        ls_argv = argv[2:]
+    else:
+        ls_argv = list()
 
     if (is_debug):
         print('mode = ' + mode, file=sys.stderr)
         print('abbr = ' + abbr, file=sys.stderr)
 
     # call
-    sc = Shortcut(mode, is_debug=is_debug, is_detail=is_detail)
+    sc = Shortcut(mode, ls_argv, is_debug=is_debug, is_detail=is_detail)
 
     if (abbr.find('.') >= 0):
         pat = abbr.replace('.', '*')
