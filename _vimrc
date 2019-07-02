@@ -122,8 +122,8 @@ set printheader=%<File:\ %t%=Page:\ %N
 if (has("gui_running"))
     "" GVim
     set guioptions=amc   "only menu, no toolbar
-    "colorscheme darkblue
-    "set guifont=Monaco:h14
+    colorscheme morning
+    set guifont=Monaco:h14
     "set lines=58 columns=238
 else
     "" Vim on Termial
