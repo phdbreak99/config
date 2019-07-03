@@ -246,7 +246,7 @@ vmap ,gv y:grep "<C-R>0" *.?v<CR>
 
 "" copy register
 " autocmd FocusGained * let @z=@+
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 "" cancel highlight
 nmap ,h :nohl<CR>
