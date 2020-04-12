@@ -36,8 +36,9 @@ Plugin 'git@github.com:triglav/vim-visual-increment'
 
 Plugin 'git@github.com:tpope/vim-fugitive'
 Plugin 'git@github.com:vim-scripts/GrepCommands'
+Plugin 'git@github.com:vim-scripts/FavEx.git'
 
-Plugin 'git@github.com:amoffat/snake'
+" Plugin 'git@github.com:amoffat/snake'
 
 
 "" The following are examples of different formats supported."
@@ -141,16 +142,21 @@ au BufRead,BufNewFile *.sv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svpp set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svhpp set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svh set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.svp set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.bv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.gv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.vh set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.v set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.vin set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.svj2 set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.svhj2 set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.svi set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.spi set filetype=spice
 au BufRead,BufNewFile *.spm set filetype=spice
 au BufRead,BufNewFile *.spm028 set filetype=spice
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile Makef* set filetype=make
+au BufRead,BufNewFile make* set filetype=make
 au BufRead,BufNewFile *.d set filetype=make
 au BufRead,BufNewFile *.make set filetype=make
 
@@ -173,7 +179,7 @@ set backspace=indent,eol,start
 set autoindent          " always set autoindenting on
 
 "" auto write before switching between buffers
-set autowriteall
+set noautowriteall
 
 "" match {}[]()
 set showmatch
@@ -183,9 +189,11 @@ set matchtime=5
 set foldmethod=marker
 set foldmarker={{{,}}}
 " autocmd FileType python setlocal foldmethod=syntax
-" autocmd FileType markdown setlocal foldmethod=syntax
+autocmd FileType markdown setlocal foldmethod=marker
 autocmd FileType verilog_systemverilog setlocal foldmethod=marker
 autocmd FileType cpp setlocal commentstring=\ \/\/\ %s
+
+let g:indentLine_concealcursor = "nv"
 
 """ comment
 " NERDCommenter
@@ -278,7 +286,7 @@ nmap <C-UP>         <C-W><C-K>
 nmap <C-Down>       <C-W><C-J>
 nmap <C-Left>       <C-W><C-H>
 nmap <C-Right>      <C-W><C-L>
-nmap ,v        :vsplit<CR><C-W><C-L>:vertical resize +30<CR>
+nmap ,v        :vsplit<CR><C-W><C-L>:vertical resize +30<CR><C-W><C-H>:set nonumber<CR>:set nowrap<CR><C-W><C-L>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Abbrev
@@ -304,11 +312,12 @@ iabbrev """" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for verilog
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoreabbr af, always_ff @ (posedge clk) begin<CR>end<ESC>k$a
+inoreabbr aa, always @ (posedge clk or negedge rstn) begin<CR>end<ESC>k$a
+inoreabbr af, always_ff @ (posedge clk or negedge rstn) begin<CR>end<ESC>k$a
 inoreabbr ac, always_comb begin<CR>end<ESC>k$a
 inoreabbr if, if () begin<CR>end else begin<CR>end<ESC>2k$a
 inoreabbr case, case ()<CR>endcase<ESC>Odefault:<ESC>k$a
-inoreabbr as, assert property (@(posedge clk) disable iff (rstn === '0) ()) else `olog_error("", $sformatf("%m: "));<ESC>4?)<CR>
+inoreabbr as, assert property (@(posedge clk) disable iff (rstn === '0) ( ))<CR>    else $error("%m: ");<ESC>k$2hi
 
 "" find current selected word
 vmap ,ff y:grep <C-R>0 *<CR>
@@ -422,7 +431,8 @@ nmap ,gca :Git add .<CR>:Gcommit -m "tmp save files in dir %:p:h"<CR>
 " verilog
 let g:verilog_disable_indent_lst = "module,conditional,eos"
 
-" snake
-if filereadable(expand("~/.vim/bundle/snake/plugin/snake.vim"))
-    source ~/.vim/bundle/snake/plugin/snake.vim
-endif
+"" snake
+"if filereadable(expand("~/.vim/bundle/snake/plugin/snake.vim"))
+"    source ~/.vim/bundle/snake/plugin/snake.vim
+"endif
+pyfile ~/script/myvim.py

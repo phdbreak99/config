@@ -56,3 +56,6 @@ def replace_ff_with_dff():
         return()
 
     replace_all(word, new_word)
+
+def test():
+    print('test')
