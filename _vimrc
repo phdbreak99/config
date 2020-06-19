@@ -129,6 +129,7 @@ if (has("gui_running"))
 else
     "" Vim on Termial
     "colorscheme desert
+    colorscheme dracula
     set mouse=a
 endif
 
@@ -159,6 +160,8 @@ au BufRead,BufNewFile Makef* set filetype=make
 au BufRead,BufNewFile make* set filetype=make
 au BufRead,BufNewFile *.d set filetype=make
 au BufRead,BufNewFile *.make set filetype=make
+au BufRead,BufNewFile *.cj2 set filetype=c
+au BufRead,BufNewFile *.cppj2 set filetype=cpp
 
 filetype plugin on
 

@@ -215,7 +215,7 @@ case $SHELL_TYPE in
     OSX_HOME)
         # commands for OS X go here
         export MANPATH=/opt/local/share/man:$MANPATH
-        export PATH=/usr/local/opt/gnu-tar/libexec/gnubin:$PATH
+        export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/anaconda3/bin:/usr/local/bin:$PATH
     ;;
     OSX_WORK)
         # commands for OS X go here
@@ -225,6 +225,11 @@ case $SHELL_TYPE in
     LINUX_WORK)
         # commands for Linux go here
         export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH}
+    ;;
+    LINUX_HOME)
+        # commands for Linux go here
+        source /opt/rh/devtoolset-9/enable
+        export RISCV=/data/opt/riscv
     ;;
 esac
 
