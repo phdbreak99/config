@@ -212,14 +212,14 @@ fb_put_file() {
 }
 
 # PATH
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}
+export PATH=${PATH}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 export TRASH_DPATH=$HOME/.trash
 case $SHELL_TYPE in
     OSX_HOME)
         # commands for OS X go here
         export MANPATH=/opt/local/share/man:$MANPATH
-        export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/anaconda3/bin:/usr/local/bin:$PATH
+        export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:$PATH
     ;;
     OSX_WORK)
         # commands for OS X go here

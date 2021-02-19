@@ -68,11 +68,11 @@ class Shortcut:
         cmd = cmd.replace('\n', ';').replace(';;', ';')
 
         # replace argv
-        if (cmd.find(r' $') != -1):
+        if (cmd.find(r'$') != -1):
             print('INFO: argument found in "%s"' % cmd, file=sys.stderr)
             for (i, argv) in enumerate(self.ls_argv):
-                cmd = cmd.replace(' $%d' % (i+1), ' ' + argv)
-            cmd = cmd.replace(' $*', ' ' + ' '.join(self.ls_argv))
+                cmd = cmd.replace('$%d' % (i+1), argv)
+            cmd = cmd.replace('$*', ' '.join(self.ls_argv))
 
         print(cmd)
         print(cmd, file=sys.stderr)
@@ -127,5 +127,5 @@ def cmd_line(argv, is_debug=False, is_detail=True):
     return
 
 if __name__ == '__main__':
-    # cmd_line(sys.argv[1:], is_debug=True, is_detail=True)
-    cmd_line(sys.argv[1:], is_debug=False, is_detail=True)
+    cmd_line(sys.argv[1:], is_debug=True, is_detail=True)
+    # cmd_line(sys.argv[1:], is_debug=False, is_detail=True)

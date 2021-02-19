@@ -127,6 +127,7 @@ if (has("gui_running"))
     "set lines=58 columns=238
 else
     "" Vim on Termial
+    " colorscheme desert
     colorscheme dracula
     "colorscheme default
     set mouse=a
@@ -144,6 +145,7 @@ au BufRead,BufNewFile *.svpp set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svhpp set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svh set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svi set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.svp set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.tie set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.j2tie set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.bv set filetype=verilog_systemverilog
@@ -151,8 +153,8 @@ au BufRead,BufNewFile *.gv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.vh set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.v set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.vin set filetype=verilog_systemverilog
-au BufRead,BufNewFile *.svj2 set filetype=verilog_systemverilog
-au BufRead,BufNewFile *.svhj2 set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.j2sv set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.j2svh set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svi set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.spi set filetype=spice
 au BufRead,BufNewFile *.spm set filetype=spice
@@ -198,6 +200,7 @@ set matchtime=5
 set foldmethod=marker
 set foldmarker={{{,}}}
 " autocmd FileType python setlocal foldmethod=syntax
+autocmd FileType markdown setlocal conceallevel=0
 autocmd FileType markdown setlocal foldmethod=marker
 autocmd FileType verilog_systemverilog setlocal foldmethod=marker
 autocmd FileType cpp setlocal commentstring=\ \/\/\ %s
@@ -444,4 +447,4 @@ let g:verilog_disable_indent_lst = "module,conditional,eos"
 "if filereadable(expand("~/.vim/bundle/snake/plugin/snake.vim"))
 "    source ~/.vim/bundle/snake/plugin/snake.vim
 "endif
-pyfile ~/script/myvim.py
+"pyfile ~/script/myvim.py
