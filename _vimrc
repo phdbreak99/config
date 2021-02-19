@@ -31,7 +31,6 @@ Plugin 'git@github.com:vim-airline/vim-airline'
 " Plugin 'git@github.com:bling/vim-bufferline'
 Plugin 'git@github.com:mhinz/vim-startify'
 
-" Plugin 'git@github.com:vim-scripts/increment.vim'
 Plugin 'git@github.com:triglav/vim-visual-increment'
 
 "Plugin 'git@github.com:tpope/vim-fugitive'
