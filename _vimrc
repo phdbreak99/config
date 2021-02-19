@@ -34,11 +34,10 @@ Plugin 'git@github.com:mhinz/vim-startify'
 " Plugin 'git@github.com:vim-scripts/increment.vim'
 Plugin 'git@github.com:triglav/vim-visual-increment'
 
-Plugin 'git@github.com:tpope/vim-fugitive'
-Plugin 'git@github.com:vim-scripts/GrepCommands'
-Plugin 'git@github.com:vim-scripts/FavEx.git'
+"Plugin 'git@github.com:tpope/vim-fugitive'
+"Plugin 'git@github.com:vim-scripts/GrepCommands'
 
-" Plugin 'git@github.com:amoffat/snake'
+"Plugin 'git@github.com:amoffat/snake'
 
 
 "" The following are examples of different formats supported."
@@ -128,8 +127,8 @@ if (has("gui_running"))
     "set lines=58 columns=238
 else
     "" Vim on Termial
-    "colorscheme desert
     colorscheme dracula
+    "colorscheme default
     set mouse=a
 endif
 
@@ -138,12 +137,15 @@ au BufRead,BufNewFile *.upf set filetype=tcl
 au BufRead,BufNewFile *.cpf set filetype=tcl
 au BufRead,BufNewFile *.sdc set filetype=tcl
 au BufRead,BufNewFile *.lib set filetype=tcl
-au BufRead,BufNewFile *.nt  set filetype=tcl
+au BufRead,BufNewFile *.nt set filetype=tcl
+au BufRead,BufNewFile *.conf set filetype=tcl
 au BufRead,BufNewFile *.sv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svpp set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svhpp set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.svh set filetype=verilog_systemverilog
-au BufRead,BufNewFile *.svp set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.svi set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.tie set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.j2tie set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.bv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.gv set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.vh set filetype=verilog_systemverilog
@@ -162,6 +164,10 @@ au BufRead,BufNewFile *.d set filetype=make
 au BufRead,BufNewFile *.make set filetype=make
 au BufRead,BufNewFile *.cj2 set filetype=c
 au BufRead,BufNewFile *.cppj2 set filetype=cpp
+
+au BufRead,BufNewFile *.cpp colorscheme default
+au BufRead,BufNewFile *.c colorscheme default
+au BufRead,BufNewFile *.h colorscheme default
 
 filetype plugin on
 

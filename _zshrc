@@ -121,16 +121,19 @@ pwd_func() {
     fi
     echo $cur_dpath
 
-    case `uname` in
-        Darwin)
+    case $SHELL_TYPE in
+        OSX_HOME)
             # commands for OS X go here
             echo ${cur_dpath} | pbcopy
             pbpaste
         ;;
-        Linux)
+        OSX_WORK)
+            # commands for OS X go here
+            echo ${cur_dpath} | pbcopy
+            pbpaste
+        ;;
+        LINUX_WORK)
             # commands for Linux go here
-            echo ${cur_dpath} | sed 's/\n//g' | \xclip -selection clipboard
-            \xclip -selection clipbard -o
         ;;
     esac
 }
@@ -211,6 +214,7 @@ fb_put_file() {
 # PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}
 
+export TRASH_DPATH=$HOME/.trash
 case $SHELL_TYPE in
     OSX_HOME)
         # commands for OS X go here
@@ -224,7 +228,18 @@ case $SHELL_TYPE in
     ;;
     LINUX_WORK)
         # commands for Linux go here
-        export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:${LD_LIBRARY_PATH}
+        export NFS=/nfs/user/jimw
+        export WORKROOT=/nfs/user/jimw/work
+        export FSC_REPO=/nfs/user/jimw/work/fsc
+        export NC="nc run -I -r+ RAM/64000 -r+ CORES/4"
+        export NC8="nc run -I -r+ RAM/64000 -r+ CORES/8"
+        export NC16="nc run -I -r+ RAM/64000 -r+ CORES/16"
+        export NC32="nc run -I -r+ RAM/64000 -r+ CORES/32"
+        cd $NFS
+        export LD_LIBRARY_PATH=/usr/lib64:/usr/lib:/usr/local/lib64:/usr/local/lib:$NFS/.local/lib:$NFS/.local/lib64:${LD_LIBRARY_PATH}
+        export PATH=$NFS/.local/bin:$PATH
+        export TRASH_DPATH=/nfs/user/jimw/.trash
+        export PERL5LIB=$NFS/.local/lib/perl5
     ;;
     LINUX_HOME)
         # commands for Linux go here
@@ -247,8 +262,9 @@ alias pwd=pwd_func
 alias vi='vim'
 alias vdiff='vimdiff --noplugin'
 
+alias rgrep='grep -ir'
+
 # rm to trash
-export TRASH_DPATH=$HOME/.trash
 alias rm='move_to_trash'
 
 alias ln='ln -s'
@@ -274,3 +290,5 @@ alias st='git status'
 alias br='git branch'
 alias cont='git rebase --continue'
 alias del='sw master; git branch -D'
+
+add all
